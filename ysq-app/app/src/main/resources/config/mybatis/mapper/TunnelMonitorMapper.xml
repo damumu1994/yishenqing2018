@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmct.ysq.mapper.TunnelMonitorMapper">
+
+
+    <select id="getCrossSection" resultType="com.cmct.ysq.model.vo.TunnelCrossSectionVo">
+        SELECT
+            tr.*, tm.monitor_id AS crossSectionId,
+            tp.project_name AS tunnelName,
+            tm.burial_time,
+            (
+                SELECT
+                    sp.param_name
+                FROM
+                    t_sys_param sp
+                WHERE
+                    sp.param_id = tr.dir_id
+            ) AS dirName,
+            (
+                SELECT
+                    sp.param_name
+                FROM
+                    t_sys_param sp1
+                WHERE
+                    sp1.param_id = tm.tunnel_hole
+            ) AS tunnelHoleName,
+            tm.method,
+            tm.`level`,
+            tm.monitor_type,
+            (
+                SELECT
+                    sp.param_name
+                FROM
+                    t_sys_param sp
+                WHERE
+                    sp.param_id = tm.monitor_type
+            ) AS monitorTypeName,
+            tm.deformed_deformation_value,
+            tm.permissible_value,
+            tm.elasticity_modulus
+        FROM
+            t_tunnel_monitor tm
+        LEFT JOIN t_tunnel_record tr ON tr.monitor_id = tm.monitor_id
+        LEFT JOIN t_tunnel_project tp ON tp.project_id = tr.tunnel_id
+        WHERE
+            tr.record_id = #{monitorItemRecordId}
+
+    </select>
+    <select id="getMonitorItemMethod" resultType="java.lang.String">
+
+        select
+        sp.param_code
+        from
+        t_tunnel_monitor tm
+        left join t_sys_param sp
+        on sp.param_id = tm.method
+    </select>
+</mapper>

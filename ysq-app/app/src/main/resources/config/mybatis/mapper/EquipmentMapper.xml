@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmct.ysq.mapper.EquipmentMapper">
+
+    <select id="getEquipments" resultType="com.cmct.ysq.model.vo.EquipmentVo">
+        SELECT
+        *
+        FROM
+        t_sys_equipment AS t
+        WHERE 1=1
+        <if test="equipId != null and  equipId != ''">
+            AND t.equip_id = #{equipId}
+        </if>
+        <if test="equipName != null and  equipName != ''">
+            AND t.equip_name LIKE CONCAT('%',#{equipName},'%')
+        </if>
+        ORDER BY t.create_date DESC
+    </select>
+
+</mapper>

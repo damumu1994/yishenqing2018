@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmct.ysq.mapper.TunnelConsProgressMapper">
+
+
+    <select id="getTunnelProgressBaseInfoList" resultType="com.cmct.ysq.model.vo.TunnelProgressBaseVo">
+
+        select
+        *,(select sp.param_name from t_sys_param sp where sp.param_id = tcp.tunnel_dir_id) as dirName,
+        (select sp.param_name from t_sys_param sp where  sp.param_id = tcp.tunnel_hole_id) as holdName,
+        (select tp.project_name from t_tunnel_project tp where tp.project_id = tcp.tunnel_id) as tunnelName
+        from
+         t_tunnel_cons_progress tcp
+        where
+        tcp.delete_status = 0
+        and tcp.valid_status = 0
+
+    </select>
+    <select id="getHisConsProgressList" resultType="string">
+
+        select construct_progress_id from t_tunnel_cons_progress where his_code = #{hisCode} and delete_status = 0
+    </select>
+
+    <select id="getNewestFaceDistance" resultType="com.cmct.ysq.model.po.TunnelConsProgressPo">
+
+        select * from t_tunnel_cons_progress where delete_status  = 0
+        and tunnel_id = #{tunnelId}
+        and  tunnel_dir_id =#{tunnelDirId}
+        and  tunnel_hole_id = #{tunnelHoleId}
+        and  valid_status = 0
+        order by create_date DESC limit 1
+
+    </select>
+</mapper>

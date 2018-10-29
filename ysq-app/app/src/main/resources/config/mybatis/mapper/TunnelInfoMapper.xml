@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmct.ysq.mapper.TunnelInfoMapper">
+    <select id="findListByTunnelTransBo" resultType="com.cmct.ysq.model.vo.TunnelTransVo"
+            parameterType="com.cmct.ysq.model.bo.TunnelTransBo">
+        SELECT
+        po.project_name,
+        i.tunnel_pro_id,
+        i.tunnel_name,
+        s1.param_name,
+        s2.param_name AS param_name2,
+        sy.param_name AS trans
+        FROM
+        t_tunnel_project AS po
+        INNER JOIN t_tunnel_info AS i ON po.project_id = i.project_id
+        INNER JOIN t_tunnel_hole_link AS h ON i.tunnel_pro_id = h.tunnel_pro_id
+        INNER JOIN t_tunnel_param_link AS p ON p.tunnel_pro_id = i.tunnel_pro_id
+        INNER JOIN t_sys_param AS s1 ON h.param_id = s1.param_id
+        INNER JOIN t_sys_param AS s2 ON s2.param_id = p.param_id
+        JOIN t_sys_param AS sy
+        <where>
+            <choose>
+                <when test="monitoringProject==null or monitoringProject==''">
+                    sy.parent_id = 001007
+                </when>
+                <otherwise>
+                    sy.param_id = #{monitoringProject}
+                </otherwise>
+            </choose>
+            <if test="tunnelId!=null and tunnelId!=''">
+                AND i.tunnel_pro_id =#{tunnelId}
+            </if>
+            <if test="tunnelHoleLinkId!=null and tunnelHoleLinkId!=''">
+                AND h.tunnel_hole_link_id = #{tunnelHoleLinkId}
+            </if>
+            <if test="tunnelProParamLinkId!=null and tunnelProParamLinkId!=''">
+                AND p.tunnel_pro_param_link_id = #{tunnelProParamLinkId}
+            </if>
+            <if test="1==1">
+                AND i.delete_status = 0
+                AND h.delete_status = 0
+                AND p.delete_status = 0
+                AND s1.delete_status =0
+            </if>
+        </where>
+    </select>
+
+    <select id="getTunnelMonitoringInformation" resultType="com.cmct.ysq.model.vo.TunnelTrans2Vo"
+            parameterType="com.cmct.ysq.model.bo.TunnelTransBo">
+     SELECT
+        po.project_name,
+        i.tunnel_pro_id,
+        i.tunnel_name,
+        s1.param_name,
+        s2.param_name AS param_name2
+    FROM
+        t_tunnel_project AS po
+        INNER JOIN t_tunnel_info AS i ON po.project_id = i.project_id
+        INNER JOIN t_tunnel_hole_link AS h ON i.tunnel_pro_id = h.tunnel_pro_id
+        INNER JOIN t_tunnel_param_link AS p ON p.tunnel_pro_id = i.tunnel_pro_id
+        INNER JOIN t_sys_param AS s1 ON h.param_id = s1.param_id
+        INNER JOIN t_sys_param AS s2 ON s2.param_id = p.param_id
+    WHERE
+     i.tunnel_pro_id =#{tunnelId}
+        AND i.delete_status = 0
+        AND h.delete_status = 0
+        AND p.delete_status = 0
+        AND s1.delete_status =0
+        ORDER BY s1.create_date
+    </select>
+
+    <select id="getTunnelDirOrHoleInfo" resultType="com.cmct.ysq.model.vo.SysParamVo">
+
+        SELECT
+        sp.*
+        FROM
+        t_sys_param sp,
+        t_tunnel_param_link tpl
+        WHERE
+        tpl.tunnel_pro_id = #{tunnelId}
+        and sp.param_id = tpl.param_id
+        and tpl.delete_status =0
+        <if test="typeCodes !=null and list.size() > 0 ">
+            and sp.param_code in
+            <foreach collection="key_value" index="index" item="item" separator=" , " open=" where (" close=") ">
+                #{item}
+            </foreach>
+        </if>
+        and sp.param_code = #{typeCode}
+    </select>
+</mapper>

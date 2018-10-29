@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmct.ysq.mapper.SysUserMapper">
+
+
+    <select id="findSysUserByUserName" resultType="com.cmct.ysq.model.po.SysUserPo">
+        select * from t_sys_user su
+        where su.delete_status = 0
+        <if test="userName != null and userName !=''">
+            and su.username = #{userName}
+        </if>
+        limit 1
+    </select>
+    <select id="findAllSysUsers" resultType="com.cmct.ysq.model.vo.SysUserVo">
+        select * from t_sys_user su
+        where su.delete_status = 0
+        <if test="username != null and username !=''">
+            and su.username = #{username}
+        </if>
+        <if test="realName != null and realName !=''">
+            and su.real_name = #{realName}
+        </if>
+    </select>
+
+</mapper>

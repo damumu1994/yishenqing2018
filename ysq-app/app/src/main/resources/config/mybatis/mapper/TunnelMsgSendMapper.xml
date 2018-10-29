@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmct.ysq.mapper.TunnelMsgSendMapper">
+
+    <select id="getList" resultType="com.cmct.ysq.model.vo.TunnelMsgSendVo" parameterType="java.lang.String">
+  SELECT
+	project.project_name as projectName,
+	param.param_name AS holeName,
+	param2.param_name AS dir,
+	msg.*
+   FROM
+	t_tunnel_msg_send AS send
+	LEFT JOIN t_tunnel_msg AS msg ON send.smg_id = msg.msg_id
+	LEFT JOIN t_tunnel_project AS project ON project.project_id = msg.project_id
+	LEFT JOIN t_tunnel_info AS info ON info.tunnel_pro_id = msg.tunnel_id
+	LEFT JOIN t_sys_param AS param ON param.param_id = msg.hole
+	LEFT JOIN t_sys_param AS param2 ON param2.param_id = msg.direction
+    </select>
+
+</mapper>

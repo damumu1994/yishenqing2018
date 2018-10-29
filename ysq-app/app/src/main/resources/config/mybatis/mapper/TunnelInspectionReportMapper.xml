@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmct.ysq.mapper.TunnelInspectionReportMapper">
+
+    <select id="paramsQuery" parameterType="com.cmct.ysq.model.where.TunnelInspectionReportWhere" resultType="com.cmct.ysq.model.vo.TunnelInspectionReportVO">
+        SELECT
+        r.inspection_report_id,r.check_time,r.start_pile_no,r.end_pile_no,
+        i.check_result,i.check_conclusion,i.remake,i.check_item_id,
+        s.param_name as checkAreaName,
+        s2.param_name as checkProjectName,
+        p.tunnel_name,
+        s3.param_name as holeName,
+        s4.param_name as directionName
+        FROM
+        t_tunnel_inspection_report r
+        LEFT JOIN t_tunnel_info p ON r.tunnel_id = p.tunnel_pro_id
+        LEFT JOIN t_tunnel_check_item i ON i.inspection_report_id = r.inspection_report_id
+
+        LEFT JOIN t_sys_param as s ON s.param_id=r.check_area
+        LEFT JOIN t_sys_param as s2 ON s2.param_id=i.check_project
+
+        LEFT JOIN t_sys_param as s3 ON s3.param_id = r.hole
+        LEFT JOIN t_sys_param as s4 ON s4.param_id = r.direction
+        <where>
+        <if test="startPileNo!=null and startPileNo!='' and endPileNo !=null and endPileNo!=''">
+            and   r.start_pile_no=#{startPileNo} and r.end_pile_no=#{endPileNo}
+        </if>
+        <if test="checkArea!=null and checkArea!=''">
+            and r.check_area=#{checkArea}
+        </if >
+            <if test="direction!=null and direction!=''">
+           and  r.direction=#{direction}
+            </if>
+            <if test="hole!=null and hole!=''">
+                and  r.hole=#{hole}
+            </if>
+            <if test="checkConclusion!=null and checkConclusion==1">
+                and  i.check_conclusion=#{checkConclusion}
+            </if>
+            <if test="checkProject!=null and checkProject!=''">
+                and  i.check_project=#{checkProject}
+            </if>
+            <if test="tunnelId!=null and tunnelId!=''">
+                AND p.tunnel_pro_id=#{tunnelId}
+            </if>
+            <if test="1==1">
+                and i.delete_status=0
+                and p.delete_status=0
+                and r.delete_status=0
+            </if>
+    </where>
+    </select>
+
+</mapper>

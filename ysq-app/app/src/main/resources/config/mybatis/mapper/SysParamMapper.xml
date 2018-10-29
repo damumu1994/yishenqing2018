@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmct.ysq.mapper.SysParamMapper">
+
+    <select id="getSysParams" resultType="com.cmct.ysq.model.vo.SysParamVo">
+        select
+        *,
+        param_name as title,
+        param_name paramName
+        from
+        t_sys_param
+        where delete_status = 0
+    </select>
+
+    <select id="getSysParamDetail" resultType="com.cmct.ysq.model.vo.SysParamVo">
+        select
+        *,
+        param_name as title
+        from
+        t_sys_param
+        where delete_status = 0
+        <if test="paramName != null and paramName != ''">
+            and param_name like CONCAT('%', #{paramName, jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="paramId != null and paramId != ''">
+            and param_id = #{paramId}
+        </if>
+        <if test="paramCode != null and paramCode != ''">
+            and param_code = #{paramCode}
+        </if>
+        limit 1
+    </select>
+
+
+</mapper>

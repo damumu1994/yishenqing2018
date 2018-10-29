@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmct.ysq.mapper.SysDepartMapper">
+
+    <select id="getDepartList" resultType="com.cmct.ysq.model.vo.SysDepartVo">
+        select
+        sd.*,sp.param_name as typeName
+        from
+        t_sys_depart sd
+        left join t_sys_param sp
+        on sd.type_id = sp.param_id
+        where sd.delete_status = 0
+        <if test="typeId != null and typeId != ''">
+            and sd.type_id = #{typeId}
+        </if>
+        <if test="departName != null and departName != ''">
+            and sd.depart_name = #{departName}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,41 @@
+buildscript {
+    ext {
+        pagehelperVersion = '5.0.0'
+        mybatisVersion = '3.4.2'
+        tkMapperVersion = '3.3.9'
+        gsonVersion = '2.6.2'
+        commonsCodecVersion = '1.10'
+        snappyJavaVersion = '1.1.4'
+        commonsLang3Verson = '3.4'
+        commonsBeanutilsVerson = '1.9.2'
+        msgpackVersion = '0.8.8'
+        httpclientVersion = '4.5.2'
+        ossVersion = '2.7.0'
+        poi_version = '3.15'
+    }
+
+    bootRepackage {
+        enabled = false
+    }
+}
+
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+    compile "com.github.pagehelper:pagehelper:${pagehelperVersion}"
+    compile "org.mybatis:mybatis:${mybatisVersion}"
+    compile "tk.mybatis:mapper:${tkMapperVersion}"
+    compile "com.google.code.gson:gson:${gsonVersion}"
+    compile "commons-codec:commons-codec:${commonsCodecVersion}"
+    compile "org.xerial.snappy:snappy-java:${snappyJavaVersion}"
+    compile "org.apache.commons:commons-lang3:${commonsLang3Verson}"
+    compile "commons-beanutils:commons-beanutils:${commonsBeanutilsVerson}"
+    compile "org.msgpack:jackson-dataformat-msgpack:${msgpackVersion}"
+    compile "org.apache.httpcomponents:httpclient:${httpclientVersion}"
+    compile "com.aliyun.oss:aliyun-sdk-oss:${ossVersion}"
+    compile "org.apache.poi:poi-ooxml:${poi_version}"
+    compile group: 'org.mybatis.generator', name: 'mybatis-generator-core', version: '1.3.4'
+
+
+}
+

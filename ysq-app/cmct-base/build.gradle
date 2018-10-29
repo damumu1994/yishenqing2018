@@ -1,0 +1,123 @@
+buildscript {
+    ext {
+        google_collections_version = '1.0'
+        spring_cloud_version = '1.2.3.RELEASE'
+        mybatis_version = '3.4.2'
+        mybatis_spring_version = '1.3.1'
+        pagehelper_version = '5.0.0'
+        tk_mapper_version = '3.3.9'
+        jsqlparser_version = '0.9.6'
+        druid_version = '1.0.27'
+        mysql_driver_version = '5.1.40'
+        logback_version = '1.1.6'
+        slf4j_version = '1.7.18'
+        commons_math3_version = '3.6'
+        commons_lang3_verson = '3.4'
+        commons_net_version = '3.4'
+        commons_fileupload_version = '1.3.1'
+        commons_lang_version = '2.6'
+        guava_version = '19.0'
+        joda_time_version = '2.9.2'
+        gs_collections_version = '7.0.1'
+        hppc_version = '0.7.1'
+        bcprov_version = '1.52'
+        jasypt_version = '1.9.2'
+        kryo_version = '2.24.0'
+        kryo_serializers_version = '0.28'
+        kryo3_version = '3.0.3'
+        zookeeper_version = '3.4.7'
+        dubbo_version = '2.5.9'
+        jackson_version = '2.8.9'
+        json_lib_version = '2.4'
+        curator_version = '2.9.1'
+        httpclient_version = '4.5.2'
+        mqttclient_version = '1.13'
+        commons_codec_version = '1.10'
+        jedis_version = '2.8.1'
+        msgpack_version = '0.8.2'
+        dom4j_version = '1.6.1'
+        xstream_version = '1.4.8'
+        netty4_version = '4.1.1.Final'
+        poi_version = '3.15'
+        xmlbeans_version = '2.6.0'
+        swagger2_version = '2.7.0'
+        jsoniter_version = '0.9.5'
+        google_collections_version = '1.0'
+    }
+
+
+    bootRepackage {
+        enabled = false
+    }
+
+}
+
+dependencies {
+    compile "org.springframework.cloud:spring-cloud-starter-eureka-server:${spring_cloud_version}"
+    compile "org.springframework.cloud:spring-cloud-starter-ribbon:${spring_cloud_version}"
+    compile "org.springframework.cloud:spring-cloud-starter-feign:${spring_cloud_version}"
+    compile "commons-net:commons-net:${commons_net_version}"
+    compile "org.mybatis:mybatis:${mybatis_version}"
+    compile "org.mybatis:mybatis-spring:${mybatis_spring_version}"
+    compile "com.github.pagehelper:pagehelper:${pagehelper_version}"
+    compile "tk.mybatis:mapper:${tk_mapper_version}"
+    compile "com.github.jsqlparser:jsqlparser:${jsqlparser_version}"
+    compile "io.netty:netty-all:${netty4_version}"
+    compile "ch.qos.logback:logback-core:${logback_version}"
+    compile "io.netty:netty-buffer:${netty4_version}"
+    compile "io.netty:netty-codec:${netty4_version}"
+    compile "io.netty:netty-common:${netty4_version}"
+    compile "io.netty:netty-handler:${netty4_version}"
+    compile "io.netty:netty-resolver:${netty4_version}"
+    compile "io.netty:netty-transport:${netty4_version}"
+    compile "io.netty:netty-codec-http:${netty4_version}"
+    compile "ch.qos.logback:logback-classic:${logback_version}"
+    compile "org.slf4j:slf4j-api:${slf4j_version}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4j_version}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4j_version}"
+    compile "org.slf4j:jul-to-slf4j:${slf4j_version}"
+    compile "com.alibaba:druid:${druid_version}"
+    compile "org.apache.commons:commons-lang3:${commons_lang3_verson}"
+    compile "com.google.guava:guava:${guava_version}"
+    compile "org.apache.commons:commons-math3:${commons_math3_version}"
+    compile "joda-time:joda-time:${joda_time_version}"
+    compile "com.goldmansachs:gs-collections:${gs_collections_version}"
+    compile "com.carrotsearch:hppc:${hppc_version}"
+    compile "org.bouncycastle:bcprov-jdk15on:${bcprov_version}"
+    compile "org.jasypt:jasypt:${jasypt_version}"
+    compile "mysql:mysql-connector-java:${mysql_driver_version}"
+    compile "com.esotericsoftware.kryo:kryo:${kryo_version}"
+    compile "de.javakaffee:kryo-serializers:${kryo_serializers_version}"
+    compile "org.apache.zookeeper:zookeeper:${zookeeper_version}"
+    compile "com.alibaba:dubbo:${dubbo_version}"
+    compile "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+    compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
+    compile "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
+    compile "net.sf.json-lib:json-lib:${json_lib_version}:jdk15"
+    compile "org.apache.curator:curator-framework:${curator_version}"
+    compile "org.apache.curator:curator-recipes:${curator_version}"
+    compile "org.apache.httpcomponents:httpclient:${httpclient_version}"
+    compile "org.fusesource.mqtt-client:mqtt-client:${mqttclient_version}"
+    compile "commons-codec:commons-codec:${commons_codec_version}"
+    compile "com.esotericsoftware:kryo:${kryo3_version}"
+    compile "redis.clients:jedis:${jedis_version}"
+    compile "org.msgpack:jackson-dataformat-msgpack:${msgpack_version}"
+    compile "dom4j:dom4j:${dom4j_version}"
+    compile "com.thoughtworks.xstream:xstream:${xstream_version}"
+    compile "commons-fileupload:commons-fileupload:${commons_fileupload_version}"
+    compile "commons-lang:commons-lang:2.6"
+    compile "org.redisson:redisson:2.2.16"
+    compile "org.apache.poi:poi:${poi_version}"
+    compile "org.apache.poi:poi-ooxml:${poi_version}"
+    compile "org.apache.poi:poi-ooxml-schemas:${poi_version}"
+    compile "org.apache.poi:poi-scratchpad:${poi_version}"
+    compile "org.apache.xmlbeans:xmlbeans:${xmlbeans_version}"
+    compile "io.springfox:springfox-swagger2:${swagger2_version}"
+    compile "io.springfox:springfox-swagger-ui:${swagger2_version}"
+    compile "com.jsoniter:jsoniter:${jsoniter_version}"
+    compile 'io.jsonwebtoken:jjwt:0.7.0'
+    compile 'com.alibaba:fastjson:1.2.22'
+    compile 'javax.validation:validation-api:1.1.0.Final'
+    compile 'org.hibernate:hibernate-validator:5.2.4.Final'
+    compile(project(":common"))
+}

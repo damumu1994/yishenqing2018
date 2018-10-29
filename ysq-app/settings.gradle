@@ -1,0 +1,4 @@
+rootProject.name = 'cmct-ysq'
+include 'common'
+include 'cmct-base'
+include 'app'

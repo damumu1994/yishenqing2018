@@ -1,0 +1,73 @@
+group 'com.cmct'
+version '1.0-SNAPSHOT'
+
+//插件地址
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath("org.springframework:springloaded:1.2.6.RELEASE")
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+//配置所有项目
+allprojects {
+
+    //应用插件
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+
+    //公共属性
+    group = 'com.cmct'
+    version = '1.0'
+
+    //编译属性
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+}
+
+//构建依赖
+//  构建组件
+
+subprojects {
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-web") {
+            exclude module: "spring-boot-starter-tomcat"
+        }
+        compile("org.springframework.boot:spring-boot-starter-actuator")
+//        compile("org.springframework.boot:spring-boot-devtools")
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        compile("org.springframework.boot:spring-boot-starter-jdbc")
+        compile("org.springframework.boot:spring-boot-starter-jetty")
+        compile("mysql:mysql-connector-java")
+        compile group: 'com.alibaba', name: 'druid', version: '1.0.9'
+
+        //启动 AOP 切面编程
+        compile("org.springframework.boot:spring-boot-starter-aop")
+
+        //集成 SpringSecurity
+        // compile("org.springframework.boot:spring-boot-starter-security")
+
+        compile("org.projectlombok:lombok")
+
+        testCompile("junit:junit")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    }
+
+}

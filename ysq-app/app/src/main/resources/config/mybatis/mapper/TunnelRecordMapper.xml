@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmct.ysq.mapper.TunnelRecordMapper">
+
+    <select id="getTunnelMonitorItemBaseInfoList"
+            resultType="com.cmct.ysq.model.vo.TunnelMonitorItemBaseVo">
+
+        select
+          tr.record_id as monitorItemRecordId,
+          tr.tunnel_id,
+          tr.dir_id tunnelDirId,
+          tr.hole_id  tunnelHoleId,
+          tp.project_name tunnelName,
+          sp.param_name dirName,
+          sp1.param_name holdName,
+          sp2.param_id monitorItemId,
+          sp2.param_name monitorItemName,
+          sp2.param_code monitorItemCode,
+          tr.peg
+        from t_tunnel_record tr
+        left join t_sys_param sp on sp.param_id = tr.dir_id
+        left join t_sys_param sp1 on sp1.param_id = tr.hole_id
+        left join t_tunnel_project tp on tp.project_id = tr.tunnel_id
+        left join t_sys_param sp2 on sp2.param_id = tr.monitor_id
+        where tr.delete_status = 0
+        and tr.valid_status = 0
+
+    </select>
+
+    <select id="getHisrotyTunnelMonitorItemInfoList" resultType="com.cmct.ysq.model.po.TunnelRecordPo">
+
+        SELECT
+            tr1.*
+        FROM
+            t_tunnel_record tr1
+        LEFT JOIN t_tunnel_record tr2 ON tr1.his_code = tr2.his_code
+        WHERE
+            tr2.record_id = #{monitorItemRecordId}
+        AND tr1.delete_status = 0
+        ORDER BY
+            tr1.create_date DESC
+    </select>
+
+
+</mapper>

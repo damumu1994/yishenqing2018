@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmct.ysq.mapper.TunnelReporterMapper">
+
+    <select id="getReportPage" resultType="com.cmct.ysq.model.vo.TunnelReporterVo">
+
+        SELECT
+        *
+        FROM
+        t_tunnel_reporter AS tr
+        WHERE 1=1
+        and tr.delete_status = 0
+        <if test="fileName != null and  fileName != ''">
+            AND tr.file_name = #{fileName}
+        </if>
+        ORDER BY tr.create_date DESC
+    </select>
+</mapper>

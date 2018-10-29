@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmct.ysq.mapper.TunnelGeoForcastDOMapper">
+
+<select id="paramsQuery" parameterType="com.cmct.ysq.model.where.TunnelGeoForcastWhere" resultType="com.cmct.ysq.model.vo.TunnelGeoForcastVO">
+    SELECT DISTINCT
+    p.tunnel_name,
+    s1.param_name AS dirName,
+    s2.param_name AS holeName,
+    g.*
+    FROM
+    t_tunnel_geo_forcast AS g
+    LEFT JOIN t_tunnel_info AS p ON p.tunnel_pro_id = g.tunnel_id
+    LEFT JOIN t_tunnel_hole_link AS h ON p.tunnel_pro_id = h.tunnel_pro_id
+    LEFT JOIN t_tunnel_param_link AS l ON l.tunnel_pro_id = p.tunnel_pro_id
+    LEFT JOIN t_sys_param AS s1 ON s1.param_id = g.dir_id
+    LEFT JOIN t_sys_param AS s2 ON s2.param_id = g.hole_id
+    <where>
+    <if test="tunnelId!=null and tunnelId!=''">
+        AND p.tunnel_pro_id=#{tunnelId}
+    </if>
+    <if test="pegStart!=null and pegStart!='' and pegEnd !=null and pegEnd!=''">
+       and   g.peg_start=#{pegStart} and g.peg_end=#{pegEnd}
+      </if>
+      <if test="forcastMethod!=null and forcastMethod!=''">
+          and g.forcast_method=#{forcastMethod}
+      </if>
+        <choose>
+            <when test="error!=null and error==1">
+                and  g.error=#{error}
+            </when>
+            <otherwise>
+                and  g.error=0
+            </otherwise>
+        </choose>
+
+        <if test="direction!=null and direction!=''">
+       and g.dir_id = #{direction}
+        </if>
+        <if test="hole!=null and hole!=''">
+            AND g.hole_id = #{hole}
+        </if>
+        <if test="1==1">
+        and g.delete_status='0'
+        and p.delete_status='0'
+    </if>
+  </where>
+    order by create_date desc
+</select>
+
+</mapper>
