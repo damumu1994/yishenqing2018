@@ -1,24 +1,24 @@
-
-
-                                                                         tttt                      tttt                                                                                 lllllll
-                                                                      ttt:::t                   ttt:::t                                                                                 l:::::l
-                                                                      t:::::t                   t:::::t                                                                                 l:::::l
-                                                                      t:::::t                   t:::::t                                                                                 l:::::l
-    cccccccccccccccc   mmmmmmm    mmmmmmm       ccccccccccccccccttttttt:::::ttttttt       ttttttt:::::ttttttt    uuuuuu    uuuuuunnnn  nnnnnnnn    nnnn  nnnnnnnn        eeeeeeeeeeee    l::::l
-  cc:::::::::::::::c mm:::::::m  m:::::::mm   cc:::::::::::::::ct:::::::::::::::::t       t:::::::::::::::::t    u::::u    u::::un:::nn::::::::nn  n:::nn::::::::nn    ee::::::::::::ee  l::::l
- c:::::::::::::::::cm::::::::::mm::::::::::m c:::::::::::::::::ct:::::::::::::::::t       t:::::::::::::::::t    u::::u    u::::un::::::::::::::nn n::::::::::::::nn  e::::::eeeee:::::eel::::l
-c:::::::cccccc:::::cm::::::::::::::::::::::mc:::::::cccccc:::::ctttttt:::::::tttttt       tttttt:::::::tttttt    u::::u    u::::unn:::::::::::::::nnn:::::::::::::::ne::::::e     e:::::el::::l
-c::::::c     cccccccm:::::mmm::::::mmm:::::mc::::::c     ccccccc      t:::::t                   t:::::t          u::::u    u::::u  n:::::nnnn:::::n  n:::::nnnn:::::ne:::::::eeeee::::::el::::l
-c:::::c             m::::m   m::::m   m::::mc:::::c                   t:::::t                   t:::::t          u::::u    u::::u  n::::n    n::::n  n::::n    n::::ne:::::::::::::::::e l::::l
-c:::::c             m::::m   m::::m   m::::mc:::::c                   t:::::t                   t:::::t          u::::u    u::::u  n::::n    n::::n  n::::n    n::::ne::::::eeeeeeeeeee  l::::l
-c::::::c     cccccccm::::m   m::::m   m::::mc::::::c     ccccccc      t:::::t    tttttt         t:::::t    ttttttu:::::uuuu:::::u  n::::n    n::::n  n::::n    n::::ne:::::::e           l::::l
-c:::::::cccccc:::::cm::::m   m::::m   m::::mc:::::::cccccc:::::c      t::::::tttt:::::t         t::::::tttt:::::tu:::::::::::::::uun::::n    n::::n  n::::n    n::::ne::::::::e         l::::::l
- c:::::::::::::::::cm::::m   m::::m   m::::m c:::::::::::::::::c      tt::::::::::::::t         tt::::::::::::::t u:::::::::::::::un::::n    n::::n  n::::n    n::::n e::::::::eeeeeeee l::::::l
-  cc:::::::::::::::cm::::m   m::::m   m::::m  cc:::::::::::::::c        tt:::::::::::tt           tt:::::::::::tt  uu::::::::uu:::un::::n    n::::n  n::::n    n::::n  ee:::::::::::::e l::::::l
-    ccccccccccccccccmmmmmm   mmmmmm   mmmmmm    cccccccccccccccc          ttttttttttt               ttttttttttt      uuuuuuuu  uuuunnnnnn    nnnnnn  nnnnnn    nnnnnn    eeeeeeeeeeeeee llllllll
-
-
-
-
-
-
+Application Version: ${ruoyi.version}
+Spring Boot Version: ${spring-boot.version}
+////////////////////////////////////////////////////////////////////
+//                          _ooOoo_                               //
+//                         o8888888o                              //
+//                         88" . "88                              //
+//                         (| ^_^ |)                              //
+//                         O\  =  /O                              //
+//                      ____/`---'\____                           //
+//                    .'  \\|     |//  `.                         //
+//                   /  \\|||  :  |||//  \                        //
+//                  /  _||||| -:- |||||-  \                       //
+//                  |   | \\\  -  /// |   |                       //
+//                  | \_|  ''\---/''  |   |                       //
+//                  \  .-\__  `-`  ___/-. /                       //
+//                ___`. .'  /--.--\  `. . ___                     //
+//              ."" '<  `.___\_<|>_/___.'  >'"".                  //
+//            | | :  `- \`.;`\ _ /`;.`/ - ` : | |                 //
+//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //
+//      ========`-.____`-.___\_____/___.-`____.-'========         //
+//                           `=---='                              //
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //
+//            佛祖保佑       永不宕机     永无BUG                 //
+////////////////////////////////////////////////////////////////////
